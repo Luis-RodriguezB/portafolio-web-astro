@@ -1,0 +1,119 @@
+---
+import Input from '../inputField/Input.astro';
+import Textarea from '../inputField/Textarea.astro';
+---
+
+<script>
+  import emailjs from '@emailjs/browser';
+  import { showAlert } from '../../utils/Alert';
+
+  const SERVICE_ID = import.meta.env.PUBLIC_EMAIL_SERVICEID;
+  const TEMPLATE_ID = import.meta.env.PUBLIC_EMAIL_TEMPLATEID;
+  const PUBLIC_KEY = import.meta.env.PUBLIC_EMAIL_KEY;
+
+  interface Data {
+    full_name: string;
+    email: string;
+    subject: string;
+    description: string;
+  }
+
+  const formElement = document.querySelector(
+    '[data-contact]'
+  ) as HTMLFormElement;
+  const alertContainer = formElement.querySelector<HTMLElement>('[data-alert]');
+  let alertElement: Node | null = null;
+
+  formElement?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(formElement);
+    const data = Object.fromEntries(formData) as unknown as Data;
+
+    const { full_name, email, subject, description } = data;
+
+    if (
+      full_name.trim().length === 0 ||
+      email.trim().length === 0 ||
+      subject.trim().length === 0 ||
+      description.trim().length === 0
+    ) {
+      return;
+    }
+
+    await emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, formElement, PUBLIC_KEY)
+      .then(() => {
+        alertElement = showAlert(alertContainer!, {
+          type: 'success',
+          message: 'Thanks for contacting me, message have ben send!',
+        });
+      })
+      .catch(() => {
+        alertElement = showAlert(alertContainer!, {
+          type: 'danger',
+          message: 'Something went wrong, try later',
+        });
+      })
+      .finally(() => {
+        setTimeout(() => {
+          if (alertElement) {
+            alertContainer?.removeChild(alertElement);
+          }
+        }, 3000);
+      });
+
+    formElement.reset();
+  });
+</script>
+
+<div class='w-full sm:max-w-[600px] m-auto relative'>
+  <form data-contact>
+    <div class='grid gap-6 mb-6 grid-cols'>
+      <Input
+        id='full_name'
+        name='full_name'
+        label='Name'
+        placeholder='Name *'
+        minLength={2}
+        maxlength={75}
+      />
+
+      <Input
+        type='email'
+        id='email'
+        name='email'
+        label='Email'
+        placeholder='Email *'
+        maxlength={75}
+      />
+
+      <Input
+        id='subject'
+        name='subject'
+        label='Subject'
+        placeholder='Subject *'
+        minLength={5}
+        maxlength={90}
+      />
+
+      <Textarea
+        id='description'
+        name='description'
+        label='Description'
+        placeholder='Write your message... *'
+        minLength={5}
+        maxlength={500}
+      />
+
+      <div data-alert>
+      </div>
+
+      <button
+        type='submit'
+        class='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
+      >
+        Send Message
+      </button>
+    </div>
+  </form>
+</div>

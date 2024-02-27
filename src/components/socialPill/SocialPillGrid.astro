@@ -1,0 +1,28 @@
+---
+import SocialPill from './SocialPill.astro';
+
+import LinkedinIcon from '../../icons/Linkedin.astro';
+import GithubIcon from '../../icons/Github.astro';
+import ResumeIcon from '../../icons/Resume.astro';
+---
+
+<ul class='flex gap-4 text-sm flex-wrap'>
+  <li>
+    <SocialPill href='https://www.linkedin.com/in/luis-rodr%C3%ADguez-baltodano/?locale=en_US'>
+      <LinkedinIcon class='size-5' />
+      Linkedin
+    </SocialPill>
+  </li>
+  <li>
+    <SocialPill href='https://github.com/Luis-RodriguezB'>
+      <GithubIcon class='size-5' />
+      Github
+    </SocialPill>
+  </li>
+  <li>
+    <SocialPill href='/resume/Resume.pdf'>
+      <ResumeIcon class='size-5' />
+      Resume
+    </SocialPill>
+  </li>
+</ul>

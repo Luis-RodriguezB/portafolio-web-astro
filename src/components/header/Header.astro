@@ -1,0 +1,39 @@
+---
+interface NavItem {
+  title: string;
+  href: string;
+}
+
+const data: NavItem[] = [
+  {
+    title: 'Home',
+    href: '/#home',
+  },
+  {
+    title: 'Experience',
+    href: '/#experience',
+  },
+  {
+    title: 'Education',
+    href: '/#education',
+  },
+  {
+    title: 'Contact Me',
+    href: '/#contact',
+  },
+];
+---
+
+<nav class='w-full h-16 flex justify-center items-center fixed top-0 left-0 z-10 box-s bg-[rgba(16,16,16,1)] border-b-[1px] border-gray-900 border-opacity-50'>
+  <ul class="w-full sm:w-[70%] md:max-w-[30rem] mx-auto flex justify-center items-center">
+    {
+      data.map(({ title, href }) => (
+        <li class="text-base text-center flex-1">
+          <a href={href} class="opacity-90 hover:font-semibold hover:opacity-100 hover:transition-all">
+            {title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

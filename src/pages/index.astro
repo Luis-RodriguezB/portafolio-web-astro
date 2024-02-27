@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import SocialPillGrid from '../components/socialPill/SocialPillGrid.astro';
+import ExperienceGrid from '../components/experience/ExperienceGrid.astro';
+import Education from '../components/education/Education.astro';
+import SkillGrid from '../components/skills/SkillsGrid.astro';
+import Contact from '../components/contact/Contact.astro';
+
+import '../styles/global.css';
+---
+
+<Layout
+  title='Portafolio Web - Luis Rodríguez - Software Develper'
+  description='As a software developer with over two years of experience, I have cultivated a versatile skill set that allows me to tackle diverse challenges effectively. My proficiency extends across various technologies, including React.js, Vue.js, Tailwind CSS, TypeScript, Java with SpringBoot, and C#. This breadth of expertise reflects my adaptability and dedication to staying abreast of industry trends.'
+>
+  <main class='px-6 animate-fade-in-down'>
+    <!-- ====================== Home ====================== -->
+    <section id='home' class='max-w-[750px] w-full mx-auto py-24 sm:py-40'>
+      <h1 class='text-4xl font-bold mb-1 capitalize'>
+        Luis Rodríguez Baltodano
+      </h1>
+      <h2 class='text-xl font-semibold mb-7 capitalize'>Software Developer</h2>
+      <p class='text-base leading-7 opacity-90 mb-7'>
+        +2 years experience as a <span class='text-blue-500 font-semibold'
+          >Frontend Developer</span
+        >, building and maintaining interactive web applications with high
+        performance code. +1 years experience as a <span
+          class='text-blue-500 font-semibold'>Backend Developer</span
+        > with Java, Spring Boot and SQL building API. Positive and productive mentality
+        to improve each day and face new challenges.
+      </p>
+      <SocialPillGrid />
+    </section>
+
+    <!-- ====================== Experience ====================== -->
+    <section
+      id='experience'
+      class='max-w-[750px] w-full mx-auto py-14 sm:py-20'
+    >
+      <h2 class='text-3xl mb-16 capitalize'>Experience</h2>
+      <ExperienceGrid />
+    </section>
+
+    <!-- ====================== Education ====================== -->
+    <section id='education' class='max-w-[750px] w-full mx-auto py-14 sm:py-20'>
+      <h2 class='text-3xl mb-16 capitalize'>Education & Skills</h2>
+      <div class='flex flex-col sm:flex-row gap-x-10'>
+        <div class='flex-1 pl-6 sm:mb-20'>
+          <Education />
+        </div>
+        <div class='flex-1'>
+          <h2 class='text-3xl mb-7'>My Skills</h2>
+          <SkillGrid />
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================== Contact ====================== -->
+    <section id='contact' class='max-w-[750px] w-full mx-auto py-14 sm:py-20'>
+      <h2 class='text-3xl mb-16 capitalize'>Contact Me</h2>
+      <Contact />
+    </section>
+  </main>
+</Layout>

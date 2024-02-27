@@ -1,0 +1,41 @@
+---
+import Skill from './Skill.astro';
+
+type Level = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+interface Skill {
+  name: string;
+  level: Level;
+}
+
+const skills: Skill[] = [
+  {
+    name: 'HTML / CSS',
+    level: 9,
+  },
+  {
+    name: 'VueJS',
+    level: 7,
+  },
+  {
+    name: 'ReactJS / NextJS',
+    level: 7,
+  },
+  {
+    name: 'Tailwind',
+    level: 6,
+  },
+  {
+    name: 'Java / SpringBoot',
+    level: 5,
+  },
+  {
+    name: 'C#',
+    level: 3,
+  },
+];
+---
+
+<div>
+  {skills.map((skill) => <Skill {...skill} />)}
+</div>

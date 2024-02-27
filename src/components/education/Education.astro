@@ -1,0 +1,25 @@
+---
+import Timelime from '../timeline/Timelime.astro';
+
+interface Education {
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+const listEducation: Education[] = [
+  {
+    title: 'Bachelor of Computer Engineering',
+    subtitle: '2018-2021',
+    description: 'Universidad Nacional de Costa Rica',
+  },
+];
+---
+
+<ol class='relative border-s border-gray-200 dark:border-gray-700'>
+  {
+    listEducation.map(education => (
+      <Timelime {...education} />
+    ))
+  }
+</ol>
