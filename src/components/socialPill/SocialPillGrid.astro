@@ -4,23 +4,52 @@ import SocialPill from './SocialPill.astro';
 import LinkedinIcon from '../../icons/Linkedin.astro';
 import GithubIcon from '../../icons/Github.astro';
 import ResumeIcon from '../../icons/Resume.astro';
+
+interface Social {
+  title: string;
+  href: string;
+}
+
+const networkSocial: Social[] = [
+  {
+    title: 'Linkedin',
+    href: 'https://www.linkedin.com/in/luis-rodr%C3%ADguez-baltodano/?locale=en_US',
+  },
+  {
+    title: 'Github',
+    href: 'https://github.com/Luis-RodriguezB',
+  },
+  {
+    title: 'Resume',
+    href: '/resume/Resume.pdf',
+  },
+];
 ---
 
 <ul class='flex gap-4 text-sm flex-wrap'>
   <li>
-    <SocialPill href='https://www.linkedin.com/in/luis-rodr%C3%ADguez-baltodano/?locale=en_US'>
+    <SocialPill
+      title='Linkedin'
+      aria-label='Linkedin'
+      href='https://www.linkedin.com/in/luis-rodr%C3%ADguez-baltodano/?locale=en_US'
+      tabIndex='0'
+    >
       <LinkedinIcon class='size-5' />
       Linkedin
     </SocialPill>
   </li>
   <li>
-    <SocialPill href='https://github.com/Luis-RodriguezB'>
+    <SocialPill
+      title='Github'
+      href='https://github.com/Luis-RodriguezB'
+      tabIndex='0'
+    >
       <GithubIcon class='size-5' />
       Github
     </SocialPill>
   </li>
   <li>
-    <SocialPill href='/resume/Resume.pdf'>
+    <SocialPill title='Resume' href='/resume/Resume.pdf' tabIndex='0'>
       <ResumeIcon class='size-5' />
       Resume
     </SocialPill>
