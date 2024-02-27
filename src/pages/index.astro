@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+import TypeWriter from '../components/typewriter/TypeWriter.astro';
 import SocialPillGrid from '../components/socialPill/SocialPillGrid.astro';
 import ExperienceGrid from '../components/experience/ExperienceGrid.astro';
 import Education from '../components/education/Education.astro';
@@ -8,6 +9,12 @@ import SkillGrid from '../components/skills/SkillsGrid.astro';
 import Contact from '../components/contact/Contact.astro';
 
 import '../styles/global.css';
+
+const arrayText = [
+  'Software Developer',
+  "I'm appasionate Frontend Developer",
+  "I'm appasionate Backend Developer",
+];
 ---
 
 <Layout
@@ -17,10 +24,12 @@ import '../styles/global.css';
   <main class='px-6 animate-fade-in-down'>
     <!-- ====================== Home ====================== -->
     <section id='home' class='max-w-[750px] w-full mx-auto py-24 sm:py-40'>
-      <h1 class='text-4xl font-bold mb-1 capitalize'>
+      <h1 class='text-4xl font-bold mb-2 capitalize'>
         Luis Rodríguez Baltodano
       </h1>
-      <h2 class='text-xl font-semibold mb-7 capitalize'>Software Developer</h2>
+
+      <TypeWriter text={arrayText} />
+
       <p class='text-base leading-7 opacity-90 mb-7'>
         +2 years experience as a <span class='text-blue-500 font-semibold'
           >Frontend Developer</span
@@ -30,6 +39,7 @@ import '../styles/global.css';
         > with Java, Spring Boot and SQL building API. Positive and productive mentality
         to improve each day and face new challenges.
       </p>
+
       <SocialPillGrid />
     </section>
 

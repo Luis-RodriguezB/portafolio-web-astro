@@ -1,0 +1,92 @@
+---
+interface Props {
+  text: string[];
+}
+
+const { text } = Astro.props;
+---
+
+<script>
+  const TYPING_TIME = 150;
+  let timer;
+  let index = 0;
+
+  class AstroTypeWriter extends HTMLElement {
+    constructor() {
+      super();
+
+      const arrayText = JSON.parse(this.dataset.text);
+    }
+  }
+  customElements.define('astro-type-writer', AstroTypeWriter);
+
+  function typingEffect(words: string[]) {
+    let word = words[index].split('');
+
+    let loopTyping = function () {
+      if (word.length > 0) {
+        document.querySelector('[data-typing]').innerHTML += word.shift();
+      } else {
+        setTimeout(() => {
+          deletingEffect(words);
+        }, 500);
+        return false;
+      }
+      timer = setTimeout(loopTyping, TYPING_TIME);
+    };
+    loopTyping();
+  }
+
+  function deletingEffect(words: string[]) {
+    let word = words[index].split('');
+
+    let loopDeleting = function () {
+      if (word.length > 0) {
+        word.pop();
+        document.querySelector('[data-typing]').innerHTML = word.join('');
+      } else {
+        if (words.length > index + 1) {
+          index++;
+        } else {
+          index = 0;
+        }
+        typingEffect(words);
+        return false;
+      }
+      timer = setTimeout(loopDeleting, TYPING_TIME);
+    };
+    loopDeleting();
+  }
+
+  typingEffect([
+    'Software Developer',
+    "I'm a passionate Frontend Developer",
+    "I'm a passionate Backend Developer",
+  ]);
+</script>
+
+<astro-type-writer data-text={JSON.stringify(text)}>
+  <div class='flex mb-6 min-h-[1.8rem]'>
+    <h2
+      data-typing
+      class='text-xl font-semibold pr-1 border-r-2 border-white/7 text-type'
+    >
+    </h2>
+  </div>
+</astro-type-writer>
+
+<style scoped>
+  .text-type {
+    animation: blinking-cursor 0.8s infinite;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes blinking-cursor {
+    from {
+      border-color: transparent;
+    }
+    to {
+      border-color: white;
+    }
+  }
+</style>
