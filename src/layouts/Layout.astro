@@ -16,8 +16,19 @@ const { title, description } = Astro.props;
     <meta charset='UTF-8' />
     <meta name='description' content={description} />
     <meta name='viewport' content='width=device-width' />
-    <link rel='icon' type='image/svg+xml' href='/logo.svg' />
     <meta name='generator' content={Astro.generator} />
+    <link rel='icon' type='image/svg+xml' href='/logo.svg' />
+
+    <meta itemprop="name" content="Portafolio Web - Luis Rodríguez - Software Develper">
+    <meta itemprop="description" content="As a software developer with over two years of experience, I have cultivated a versatile skill set that allows me to tackle diverse challenges effectively. My proficiency extends across various technologies, including React.js, Vue.js, Tailwind CSS, TypeScript, Java with SpringBoot, and C#. This breadth of expertise reflects my adaptability and dedication to staying abreast of industry trends.">
+    <meta itemprop="image" content="/cover-image.jpg">
+
+    <meta property="og:url" content="https://luis-rodriguez-b.netlify.app">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Portafolio Web - Luis Rodríguez - Software Develper">
+    <meta property="og:description" content="As a software developer with over two years of experience, I have cultivated a versatile skill set that allows me to tackle diverse challenges effectively. My proficiency extends across various technologies, including React.js, Vue.js, Tailwind CSS, TypeScript, Java with SpringBoot, and C#. This breadth of expertise reflects my adaptability and dedication to staying abreast of industry trends.">
+    <meta property="og:image" content="/cover-image.jpg">
+
     <title>{title}</title>
   </head>
   <body class="bg-[#f3f3f3] text-[rgba(0,0,0,1)] dark:bg-slate-950 dark:text-white transition-all">

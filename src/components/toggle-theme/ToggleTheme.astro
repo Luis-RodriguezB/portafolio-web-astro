@@ -5,13 +5,19 @@ import SunIcon from '../../icons/Sun.astro';
 
 <script>
   const themeButton = document.querySelector('[data-theme]');
-
+  if (themeButton) {
+    themeButton.setAttribute('title', 'Light Theme');
+    themeButton.setAttribute('aria-label', 'Light Theme');
+  }
+  
   themeButton && themeButton.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
     if (document.documentElement.classList.contains('dark')) {
       themeButton.setAttribute('title', 'Light Theme');
+      themeButton.setAttribute('aria-label', 'Light Theme');
     } else {
       themeButton.setAttribute('title', 'Dark Theme');
+      themeButton.setAttribute('aria-label', 'Dark Theme');
     }
   });
 
