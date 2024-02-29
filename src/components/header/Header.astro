@@ -1,4 +1,6 @@
 ---
+import ToggleTheme from '../toggle-theme/ToggleTheme.astro';
+
 interface NavItem {
   title: string;
   href: string;
@@ -24,16 +26,28 @@ const data: NavItem[] = [
 ];
 ---
 
-<nav class='w-full h-16 flex justify-center items-center fixed top-0 left-0 z-10 box-s bg-[rgba(16,16,16,1)] border-b-[1px] border-gray-900 border-opacity-50'>
-  <ul class="w-full sm:w-[70%] md:max-w-[30rem] mx-auto flex justify-center items-center">
+<nav
+  class='
+    w-full h-16 flex justify-center items-center 
+    fixed top-0 left-0 z-10 box-s sm:p-2 shadow dark:shadow-none dark:border-b-[2px] dark:border-gray-900 dark:border-opacity-30
+    bg-[#f3f3f3] dark:bg-slate-950'
+>
+  <ul
+    class='w-full sm:w-[70%] md:max-w-[30rem] mx-auto flex justify-center items-center'
+  >
     {
       data.map(({ title, href }) => (
-        <li class="text-base text-center flex-1">
-          <a href={href} class="opacity-90 hover:font-semibold hover:opacity-100 hover:transition-all">
+        <li class='text-base text-center flex-1'>
+          <a
+            href={href}
+            class='opacity-90 hover:font-semibold hover:opacity-100 hover:transition-all'
+          >
             {title}
           </a>
         </li>
       ))
     }
   </ul>
+
+  <ToggleTheme />
 </nav>

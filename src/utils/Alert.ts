@@ -8,7 +8,7 @@ export const showAlert = (parent: HTMLElement, { type, message }: Options) => {
   alertDiv.id = 'alert';
   alertDiv.className = `
     text-center p-4 mb-1 text-normal 
-    rounded-lg bg-gray-800 ${
+    rounded-lg bg-gray-300 dark:bg-gray-800 ${
       type === 'success' ? 'text-green-600' : 'text-red-600'
     }`;
   alertDiv.setAttribute('role', 'alert');

@@ -1,0 +1,41 @@
+---
+import MoonIcon from '../../icons/Moon.astro';
+import SunIcon from '../../icons/Sun.astro';
+---
+
+<script>
+  const themeButton = document.querySelector('[data-theme]');
+
+  themeButton && themeButton.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    if (document.documentElement.classList.contains('dark')) {
+      themeButton.setAttribute('title', 'Light Theme');
+    } else {
+      themeButton.setAttribute('title', 'Dark Theme');
+    }
+  });
+
+</script>
+
+<div class='hidden sm:block h-8 w-8'>
+  <button data-theme type='button' class='w-full h-full text-black dark:text-white'>
+    <MoonIcon class="moon-icon text-gray-400" />
+    <SunIcon class="sun-icon text-yellow-500" />
+  </button>
+</div>
+
+<style scoped>
+  .moon-icon {
+    display: block;
+  }
+  .sun-icon {
+    display: none;
+  }
+
+  html.dark .moon-icon {
+    display: none;  
+  }
+  html.dark .sun-icon {
+    display: block;  
+  }
+</style>
