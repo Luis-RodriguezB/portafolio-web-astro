@@ -1,0 +1,54 @@
+---
+import { getLangFromUrl } from '../../i18n/utils';
+
+const languages = {
+  en: [
+    {
+      value: 'en',
+      label: 'English',
+    },
+    {
+      value: 'es',
+      label: 'Spanish',
+    },
+  ],
+  es: [
+    {
+      value: 'en',
+      label: 'Ingles',
+    },
+    {
+      value: 'es',
+      label: 'Español',
+    },
+  ],
+};
+const lang = getLangFromUrl(Astro.url);
+---
+
+<script>
+  const selectElement = document.querySelector(
+    '[data-languages]'
+  ) as HTMLSelectElement;
+
+  selectElement.addEventListener('change', (e) => {
+    const target = e.target as HTMLSelectElement;
+    const value = target.value;
+    const hasHash = window.location.hash !== '';
+
+    window.location.pathname = `/${value}/`;
+  });
+</script>
+
+<select
+  data-languages
+  class='bg-inherit p-1 focus:border-none focus:outline-none'
+>
+  {
+    languages[lang].map(({ label, value }) => (
+      <option class='text-black' value={value} selected={lang === value}>
+        {label}
+      </option>
+    ))
+  }
+</select>

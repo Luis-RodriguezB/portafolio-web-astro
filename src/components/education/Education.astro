@@ -1,5 +1,6 @@
 ---
 import Timelime from '../timeline/Timelime.astro';
+import { getLangFromUrl } from '../../i18n/utils';
 
 interface Education {
   title: string;
@@ -7,19 +8,18 @@ interface Education {
   description: string;
 }
 
-const listEducation: Education[] = [
-  {
-    title: 'Bachelor of Computer Engineering',
-    subtitle: '2018-2021',
-    description: 'Universidad Nacional de Costa Rica',
-  },
-];
+const lang = getLangFromUrl(Astro.url);
+
+const title =
+  lang === 'en'
+    ? 'Bachelor of Computer Engineering'
+    : 'Bachiller en Ingeniería en Sistemas';
 ---
 
 <ol class='relative border-s border-blue-600 dark:border-gray-700'>
-  {
-    listEducation.map(education => (
-      <Timelime {...education} />
-    ))
-  }
+  <Timelime
+    title={title}
+    subtitle='2018-2021'
+    description='Universidad Nacional de Costa Rica'
+  />
 </ol>

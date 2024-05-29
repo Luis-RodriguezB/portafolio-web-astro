@@ -4,29 +4,47 @@ import SunIcon from '../../icons/Sun.astro';
 ---
 
 <script>
-  const themeButton = document.querySelector('[data-theme]');
-  if (themeButton) {
-    themeButton.setAttribute('title', 'Light Theme');
-    themeButton.setAttribute('aria-label', 'Light Theme');
-  }
-  
-  themeButton && themeButton.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
-    if (document.documentElement.classList.contains('dark')) {
-      themeButton.setAttribute('title', 'Light Theme');
-      themeButton.setAttribute('aria-label', 'Light Theme');
-    } else {
-      themeButton.setAttribute('title', 'Dark Theme');
-      themeButton.setAttribute('aria-label', 'Dark Theme');
-    }
-  });
+  import { getLangFromUrl } from '../../i18n/utils';
 
+  const themeButton = document.querySelector('[data-theme]');
+  const lang = getLangFromUrl(new URL(window.location.href));
+  const themeButtonLabel = {
+    en: {
+      light: 'Ligh Theme',
+      dark: 'Dark Theme',
+    },
+    es: {
+      light: 'Tema Claro',
+      dark: 'Tema Oscuro',
+    },
+  };
+
+  if (themeButton) {
+    themeButton.setAttribute('title', themeButtonLabel[lang].light);
+    themeButton.setAttribute('aria-label', themeButtonLabel[lang].light);
+  }
+
+  themeButton &&
+    themeButton.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      if (document.documentElement.classList.contains('dark')) {
+        themeButton.setAttribute('title', themeButtonLabel[lang].light);
+        themeButton.setAttribute('aria-label', themeButtonLabel[lang].light);
+      } else {
+        themeButton.setAttribute('title', themeButtonLabel[lang].dark);
+        themeButton.setAttribute('aria-label', themeButtonLabel[lang].dark);
+      }
+    });
 </script>
 
 <div class='hidden sm:block h-8 w-8'>
-  <button data-theme type='button' class='w-full h-full text-black dark:text-white'>
-    <MoonIcon class="moon-icon text-gray-400" />
-    <SunIcon class="sun-icon text-yellow-500" />
+  <button
+    data-theme
+    type='button'
+    class='w-full h-full text-black dark:text-white'
+  >
+    <MoonIcon class='moon-icon text-gray-400' />
+    <SunIcon class='sun-icon text-yellow-500' />
   </button>
 </div>
 
@@ -39,9 +57,9 @@ import SunIcon from '../../icons/Sun.astro';
   }
 
   html.dark .moon-icon {
-    display: none;  
+    display: none;
   }
   html.dark .sun-icon {
-    display: block;  
+    display: block;
   }
 </style>

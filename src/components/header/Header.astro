@@ -1,34 +1,54 @@
 ---
 import ToggleTheme from '../toggle-theme/ToggleTheme.astro';
+import SelectLanguage from '../select-language/SelectLanguage.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+
+interface LocaleTitle {
+  en: string;
+  es: string;
+}
 
 interface NavItem {
-  title: string;
+  title: LocaleTitle;
   href: string;
 }
 
+const lang = getLangFromUrl(Astro.url);
+
 const data: NavItem[] = [
   {
-    title: 'Home',
-    href: '/#home',
+    title: {
+      en: 'Home',
+      es: 'Inicio',
+    },
+    href: '#home',
   },
   {
-    title: 'Experience',
-    href: '/#experience',
+    title: {
+      en: 'Experience',
+      es: 'Experiencia',
+    },
+    href: '#experience',
   },
   {
-    title: 'Education',
-    href: '/#education',
+    title: {
+      en: 'Education',
+      es: 'Educación',
+    },
+    href: '#education',
   },
   {
-    title: 'Contact Me',
-    href: '/#contact',
+    title: {
+      en: 'Contact Me',
+      es: 'Contacto',
+    },
+    href: '#contact',
   },
 ];
 ---
 
 <nav
-  class='
-    w-full h-16 flex justify-center items-center 
+  class='w-full h-16 flex justify-center items-center
     fixed top-0 left-0 z-10 box-s sm:p-2 shadow dark:shadow-none dark:border-b-[2px] dark:border-gray-900 dark:border-opacity-30
     bg-[#f3f3f3] dark:bg-slate-950'
 >
@@ -39,15 +59,18 @@ const data: NavItem[] = [
       data.map(({ title, href }) => (
         <li class='text-base text-center flex-1'>
           <a
-            href={href}
+            href={`/${lang}/${href}`}
             class='opacity-90 hover:font-semibold hover:opacity-100 hover:transition-all'
           >
-            {title}
+            {title[lang]}
           </a>
         </li>
       ))
     }
   </ul>
 
-  <ToggleTheme />
+  <div class="flex gap-4">
+    <SelectLanguage />
+    <ToggleTheme />
+  </div>
 </nav>

@@ -1,39 +1,12 @@
 ---
 import Experience from './Experience.astro';
 
-interface IExperience {
-  title: string;
-  date: string;
-  descripcion?: string;
-  responsabilities?: string[];
-}
+import { getLangFromUrl, useTranslation } from '../../i18n/utils';
+import type { IExperience } from '../../interfaces';
 
-const experiences: IExperience[] = [
-  {
-    title: 'Intership Software Developer at Accenture',
-    date: 'August 2021 - November 2021',
-    descripcion:
-      'During my internship, I faced different challenges and technologies that I had no prior knowledge of, making it a challenge for me to develop professionally. I had to adapt to various circumstances and challenges that arose. I collaborated in a team to develop a project planning platform, where my role as a Software Developer involved developing and implementing new features according to requirements, maintaining and refactoring existing code. I was able to work on both the Front-End and the Back-End, which allowed me to gain valuable experience and skills.',
-    responsabilities: [
-      'Development and maintenance of a project planning platform',
-      'Meeting requirements within established deadlines',
-      'Development of new features and design using best practices and clean code',
-      'Adaptation to new challenges and technologies, delivering value to the customer',
-    ],
-  },
-  {
-    title: 'Front-End Developer at Accenture',
-    date: '2021 - Present',
-    descripcion:
-      'In my role as a Front-End Developer, I have had the opportunity to work on both sales and administrative platforms. I have worked directly with clients for project planning and implementing new features. I have encountered various challenges such as working in diverse areas and with different teams, in which I have been able to adapt successfully. Additionally, part of my role involves developing new projects, maintaining platforms, refactoring, and maintaining existing code.',
-    responsabilities: [
-      'Planning, development, and maintenance of a digital web Vehicles platform',
-      'Understand and meet the requirements in the established times with high performance code',
-      'Maintenance of web applications, applying code fixing and refactoring',
-      'Efficient teamwork to deliver value to the customer',
-    ],
-  },
-];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+const experiences = t<IExperience[]>('experience', 'experiences');
 ---
 
 <div

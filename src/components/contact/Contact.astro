@@ -1,11 +1,17 @@
 ---
 import Input from '../inputField/Input.astro';
 import Textarea from '../inputField/Textarea.astro';
+import { getLangFromUrl } from '../../i18n/utils';
+import formLabels from './formLabels';
+
+const lang = getLangFromUrl(Astro.url);
+const defaultLabels = formLabels[lang];
 ---
 
 <script>
   import emailjs from '@emailjs/browser';
-  import { showAlert } from '../../utils/Alert';
+  import { showAlert, defaultAlertMessages } from '../../utils/Alert';
+  import { getLangFromUrl } from '../../i18n/utils';
 
   const SERVICE_ID = import.meta.env.PUBLIC_EMAIL_SERVICEID;
   const TEMPLATE_ID = import.meta.env.PUBLIC_EMAIL_TEMPLATEID;
@@ -18,6 +24,7 @@ import Textarea from '../inputField/Textarea.astro';
     description: string;
   }
 
+  const lang = getLangFromUrl(new URL(window.location.href));
   const formElement = document.querySelector(
     '[data-contact]'
   ) as HTMLFormElement;
@@ -45,13 +52,13 @@ import Textarea from '../inputField/Textarea.astro';
       .then(() => {
         alertElement = showAlert(alertContainer!, {
           type: 'success',
-          message: 'Thanks for contacting me, message have ben send!',
+          message: defaultAlertMessages[lang].success,
         });
       })
       .catch(() => {
         alertElement = showAlert(alertContainer!, {
           type: 'danger',
-          message: 'Something went wrong, try later',
+          message: defaultAlertMessages[lang].error,
         });
       })
       .finally(() => {
@@ -67,13 +74,13 @@ import Textarea from '../inputField/Textarea.astro';
 </script>
 
 <div class='w-full sm:max-w-[600px] m-auto relative'>
-  <form data-contact autocomplete="off">
+  <form data-contact autocomplete='off'>
     <div class='grid gap-6 mb-6 grid-cols'>
       <Input
         id='full_name'
         name='full_name'
-        label='Name'
-        placeholder='Name *'
+        label={defaultLabels.fullName.label}
+        placeholder={defaultLabels.fullName.placeholder}
         minLength={2}
         maxlength={75}
       />
@@ -82,16 +89,16 @@ import Textarea from '../inputField/Textarea.astro';
         type='email'
         id='email'
         name='email'
-        label='Email'
-        placeholder='Email *'
+        label={defaultLabels.email.label}
+        placeholder={defaultLabels.email.placeholder}
         maxlength={75}
       />
 
       <Input
         id='subject'
         name='subject'
-        label='Subject'
-        placeholder='Subject *'
+        label={defaultLabels.subject.label}
+        placeholder={defaultLabels.subject.placeholder}
         minLength={5}
         maxlength={90}
       />
@@ -99,20 +106,19 @@ import Textarea from '../inputField/Textarea.astro';
       <Textarea
         id='description'
         name='description'
-        label='Description'
-        placeholder='Write your message... *'
+        label={defaultLabels.description.label}
+        placeholder={defaultLabels.description.placeholder}
         minLength={5}
         maxlength={500}
       />
 
-      <div data-alert>
-      </div>
+      <div data-alert></div>
 
       <button
         type='submit'
         class='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'
       >
-        Send Message
+        {defaultLabels.formButton.label}
       </button>
     </div>
   </form>

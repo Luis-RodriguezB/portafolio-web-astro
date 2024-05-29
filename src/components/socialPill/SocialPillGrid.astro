@@ -1,29 +1,13 @@
 ---
+import { getLangFromUrl } from '../../i18n/utils';
 import SocialPill from './SocialPill.astro';
 
 import LinkedinIcon from '../../icons/Linkedin.astro';
 import GithubIcon from '../../icons/Github.astro';
 import ResumeIcon from '../../icons/Resume.astro';
 
-interface Social {
-  title: string;
-  href: string;
-}
-
-const networkSocial: Social[] = [
-  {
-    title: 'Linkedin',
-    href: 'https://www.linkedin.com/in/luis-rodr%C3%ADguez-baltodano/?locale=en_US',
-  },
-  {
-    title: 'Github',
-    href: 'https://github.com/Luis-RodriguezB',
-  },
-  {
-    title: 'Resume',
-    href: '/resume/Resume.pdf',
-  },
-];
+const lang = getLangFromUrl(Astro.url);
+const resumeLabel = lang === 'en' ? 'Resume' : 'Resumen';
 ---
 
 <ul class='flex gap-4 text-sm flex-wrap'>
@@ -49,9 +33,9 @@ const networkSocial: Social[] = [
     </SocialPill>
   </li>
   <li>
-    <SocialPill title='Resume' href='/resume/Resume.pdf' tabIndex='0'>
+    <SocialPill title={resumeLabel} href='/resume/Resume.pdf' tabIndex='0'>
       <ResumeIcon class='size-5' />
-      Resume
+      { resumeLabel }
     </SocialPill>
   </li>
 </ul>

@@ -30,3 +30,14 @@ export const showAlert = (parent: HTMLElement, { type, message }: Options) => {
 
   return alertDiv;
 };
+
+export const defaultAlertMessages = {
+  en: {
+    success: 'Thanks for contacting me, message have ben send!',
+    error: 'Something went wrong, try later',
+  },
+  es: {
+    success: '¡Gracias por contactarme, el mensaje ha sido enviado!',
+    error: 'Algo falló, intentaló más tarde',
+  }
+}
