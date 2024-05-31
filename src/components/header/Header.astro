@@ -1,6 +1,7 @@
 ---
 import ToggleTheme from '../toggle-theme/ToggleTheme.astro';
 import SelectLanguage from '../select-language/SelectLanguage.astro';
+import Menu from '../../icons/Menu.astro';
 import { getLangFromUrl } from '../../i18n/utils';
 
 interface LocaleTitle {
@@ -47,13 +48,13 @@ const data: NavItem[] = [
 ];
 ---
 
-<nav
-  class='w-full h-16 flex justify-center items-center
+<header
+  class='w-full h-16 flex justify-end sm:justify-center items-center
     fixed top-0 left-0 z-10 box-s sm:p-2 shadow dark:shadow-none dark:border-b-[2px] dark:border-gray-900 dark:border-opacity-30
     bg-[#f3f3f3] dark:bg-slate-950'
 >
   <ul
-    class='w-full sm:w-[70%] md:max-w-[30rem] mx-auto flex justify-center items-center'
+    class='w-full sm:w-[70%] md:max-w-[30rem] mx-auto hidden sm:flex justify-center items-center'
   >
     {
       data.map(({ title, href }) => (
@@ -69,8 +70,8 @@ const data: NavItem[] = [
     }
   </ul>
 
-  <div class="flex gap-4">
+  <div class="gap-4 flex">
     <SelectLanguage />
     <ToggleTheme />
   </div>
-</nav>
+</header>
