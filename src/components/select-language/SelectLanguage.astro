@@ -34,8 +34,6 @@ const lang = getLangFromUrl(Astro.url);
   selectElement.addEventListener('change', (e) => {
     const target = e.target as HTMLSelectElement;
     const value = target.value;
-    const hasHash = window.location.hash !== '';
-
     window.location.pathname = `/${value}/`;
   });
 </script>

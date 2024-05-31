@@ -9,7 +9,6 @@ const { text } = Astro.props;
 <script>
   const TYPING_TIME = 150;
   const TYPING_BACK_DELAY = 1000;
-  let timer;
   let index = 0;
 
   class AstroTypeWriter extends HTMLElement {
@@ -38,7 +37,7 @@ const { text } = Astro.props;
         }, TYPING_BACK_DELAY);
         return false;
       }
-      timer = setTimeout(loopTyping, TYPING_TIME);
+      setTimeout(loopTyping, TYPING_TIME);
     };
     loopTyping();
   }
@@ -59,7 +58,7 @@ const { text } = Astro.props;
         typingEffect(words);
         return false;
       }
-      timer = setTimeout(loopDeleting, TYPING_TIME);
+      setTimeout(loopDeleting, TYPING_TIME);
     };
     loopDeleting();
   }

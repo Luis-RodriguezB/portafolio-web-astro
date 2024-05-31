@@ -1,0 +1,9 @@
+---
+const { origin } = Astro.url;
+---
+
+<div class='w-full min-h-screen flex flex-col justify-center items-center gap-4 bg-slate-950 text-white'>
+  <h1 class='text-9xl'>404</h1>
+  <p class="text-2xl">Sorry, this page doesn't exist</p>
+  <a href={origin + '/en'} class="text-lg hover:underline font-semibold">Go Back</a>
+</div>
