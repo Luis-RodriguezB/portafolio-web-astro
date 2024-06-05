@@ -11,6 +11,14 @@ interface Props {
 const { title, description } = Astro.props;
 ---
 
+<script>
+
+  window.onload = function() {
+    document.querySelector("body")?.classList.remove("invisible");
+  }
+
+</script>
+
 <!doctype html>
 <html lang='en' class="scroll-smooth">
   <head>
@@ -32,7 +40,7 @@ const { title, description } = Astro.props;
 
     <title>{title}</title>
   </head>
-  <body class="bg-[#f3f3f3] text-[rgba(0,0,0,1)] dark:bg-slate-950 dark:text-white transition-all">
+  <body class="invisible bg-[#f3f3f3] text-[rgba(0,0,0,1)] dark:bg-slate-950 dark:text-white transition-all">
     <Header />
     <slot />
   </body>
